@@ -1,0 +1,59 @@
+-- Task 1;
+
+SELECT first_name,last_name,salary,salary + (salary*10/100) as yeni_maas from hr.employees;
+
+-- Task 2;
+
+select country_id from hr.countries;
+
+-- Task 3;
+
+select first_name,department_id,salary 
+from hr.employees
+where (department_id = 50 and salary < 3000)
+ or (department_id = 80 and salary > 10000);
+
+-- Task 4;
+
+select min_salary,job_id from hr.jobs 
+where min_salary between 4000 and 6000;
+
+-- Task 5;
+
+select region_id,country_id,country_name from hr.countries 
+where country_id in ('GB','US','CA');
+
+-- Task 6;
+
+select first_name,last_name from hr.employees
+where first_name like 'S____'
+and last_name like '%a%';
+
+-- Task 7;
+
+select department_name,manager_id from hr.departments 
+where manager_id is null;
+
+-- Task 8;
+
+select job_title,max_salary - min_salary as maas_ferqi
+from hr.jobs 
+order by maas_ferqi desc
+fetch first 3 rows only;
+
+-- Task 9;
+
+select count(*) as isci_sayi,count (commission_pct) as komisiya_alanlar,
+round (avg(salary)),max(salary) - min(salary) as maas_ferqi from hr.employees 
+where department_id = 80;
+
+-- Task 10;
+
+SELECT FIRST_NAME AS AD, SALARY
+FROM HR.EMPLOYEES
+WHERE first_name LIKE 'A%'
+  AND COMMISSION_PCT is null;
+
+-- 1-ci səhv : where-dən sonra "ad" işlənməyi;
+-- 2-ci səhv : Alias-ın 2 dırnaq içində işlənməyi;
+-- 3-cü səhv : "= null" yerinə "is null" olmalıdır.
